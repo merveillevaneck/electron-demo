@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { NativeBaseProvider, Image } from 'native-base';
+import { Pressable, NativeBaseProvider, Image, Modal, Text, Box } from 'native-base';
 import logo from './logo.svg';
-
-const AppLogo = styled(Image)`
-  height: 0vmin;
-  pointer-events: none;
-  height: 500px;
-  width: 500px;
-`
 
 const Container = styled.div`
   text-align: center;
@@ -30,18 +23,54 @@ const I = styled.i`
   color: palevioletred;
 `;
 
+const Button = styled.button`
+  height: 60px;
+  width: 70%;
+  background-color: transparent;
+  color: palevioletred;
+  border: 0.5px solid palevioletred;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #282c34;
+  font-size: 24px;
+  text-transform: uppercase;
+`;
+
 const App = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Container>
       <NativeBaseProvider>
         <AppHeader className="App-header">
-          <AppLogo src={logo} height={500} width={500} />
+          <Image alt='logo' source={logo} height={400} width={400} />
           <p>
             Let's build a Desktop App with
             <br />
             <br />
             <code><I style={{ fontSize: '40px', color: 'palevioletred' }}>Electron</I></code>
           </p>
+
+          <Button onClick={() => setIsOpen((open: boolean) => !open)}>
+            { isOpen ? 'close' : 'open' }
+          </Button>
+          
+          <Modal
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+          >
+            <Box 
+              justifyContent="center" 
+              alignItems="center" 
+              backgroundColor='palevioletred'
+              width={100}
+              height={100}
+              borderRadius={5}
+              shadow={5}
+            >
+              <Text color='white'>hi</Text>
+            </Box>
+          </Modal>
         </AppHeader>
       </NativeBaseProvider>
     </Container>
