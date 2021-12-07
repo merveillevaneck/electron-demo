@@ -27,8 +27,6 @@ const App = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(logo);
-
   return (
     <Container>
       <NativeBaseProvider>
