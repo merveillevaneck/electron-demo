@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Pressable, NativeBaseProvider, Image, Modal, Text, Box } from 'native-base';
+import { Button, NativeBaseProvider, Image, Modal, Text, Box } from 'native-base';
 import logo from './logo.svg';
 
 const Container = styled.div`
@@ -23,27 +23,17 @@ const I = styled.i`
   color: palevioletred;
 `;
 
-const Button = styled.button`
-  height: 60px;
-  width: 70%;
-  background-color: transparent;
-  color: palevioletred;
-  border: 0.5px solid palevioletred;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px #282c34;
-  font-size: 24px;
-  text-transform: uppercase;
-`;
-
 const App = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(logo);
 
   return (
     <Container>
       <NativeBaseProvider>
         <AppHeader className="App-header">
-          <Image alt='logo' source={logo} height={400} width={400} />
+          <Image alt='logo' source={{ uri: logo }} height={400} width={400} />
           <p>
             Let's build a Desktop App with
             <br />
@@ -51,8 +41,27 @@ const App = () => {
             <code><I style={{ fontSize: '40px', color: 'palevioletred' }}>Electron</I></code>
           </p>
 
-          <Button onClick={() => setIsOpen((open: boolean) => !open)}>
-            { isOpen ? 'close' : 'open' }
+          <Button
+            backgroundColor='transparent'
+            onPress={() => setIsOpen((open: boolean) => !open)}
+            borderColor='palevioletred'
+            borderWidth={0.5}
+            width='70%'
+            height='50px'
+            _pressed={{
+              borderColor: 'lightblue'
+            }}
+          >
+            <Text 
+              fontSize={24} 
+              textTransform='uppercase' 
+              italic 
+              color='palevioletred'
+              padding={0}
+              margin={0}
+            >
+              { isOpen ? 'close' : 'open' }
+            </Text>
           </Button>
           
           <Modal
