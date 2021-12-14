@@ -1,0 +1,6 @@
+{
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.colorTheme": "Sonokai Shusia",
+    "vim.statusBarColorControl": true,
+    "entity.name.tag": "black",
+}
