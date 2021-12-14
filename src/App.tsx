@@ -1,50 +1,65 @@
 import React from 'react';
-import styled from 'styled-components';
-import { NativeBaseProvider, Image } from 'native-base';
-import logo from './logo.svg';
-
-const AppLogo = styled(Image)`
-  height: 0vmin;
-  pointer-events: none;
-  height: 500px;
-  width: 500px;
-`
-
-const Container = styled.div`
-  text-align: center;
-`;
-
-const AppHeader = styled.header`
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-`;
-
-const I = styled.i`
-  font-size: 40px;
-  color: palevioletred;
-`;
+import { View, Image, Text } from 'native-base';
+import { Route, Routes } from 'react-router-dom';
+import { Header, HeaderLink } from './components';
+import kilo from './assets/kilogram.png';
+import { Welcome, Docs } from './pages';
+import logo from './assets/logo.svg';
 
 const App = () => {
+
   return (
-    <Container>
-      <NativeBaseProvider>
-        <AppHeader className="App-header">
-          <AppLogo src={logo} height={500} width={500} />
-          <p>
-            Let's build a Desktop App with
-            <br />
-            <br />
-            <code><I style={{ fontSize: '40px', color: 'palevioletred' }}>Electron</I></code>
-          </p>
-        </AppHeader>
-      </NativeBaseProvider>
-    </Container>
+      <View height='100vh'>
+        <Image
+          source={{ uri: logo }}
+          style={{ tintColor: 'rgba(224, 165, 207, 0.109)' }}
+          alt='background'
+          width='100%'
+          height='100%'
+          position='fixed'
+          zIndex={0}
+        />
+          <Routes>
+            <Route path='/' element={<Welcome />} />
+            <Route path='/docs' element={<Docs />} />
+          </Routes>
+          <Header
+            title={
+              <Text
+                margin={0}
+                padding={0}
+                color='white'
+                fontSize={30}
+              >
+                KiloLab
+              </Text>
+            }
+            subtitle={
+              <Text
+                margin={0}
+                padding={0}
+                marginLeft='5px'
+                color='rgba(255, 255, 255, 0.5)'
+              >
+                Putting
+                {' '}
+                <Image
+                  style={{ tintColor: 'white' }}
+                  height={5}
+                  width={5}
+                  source={{ uri: kilo }}
+                  alt='kilogram'
+                />
+                {' '}
+                behind your ideas.
+              </Text>
+            }
+            extra={[
+              <HeaderLink name='Home' path='/' />,
+              <HeaderLink name='Docs' path='/docs' />
+            ]}
+          />
+      </View>
   );
 }
 
