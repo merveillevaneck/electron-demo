@@ -4,7 +4,7 @@ import { IViewProps } from 'native-base/lib/typescript/components/basic/View/typ
 
 export const DEFAULT_DIM = {
     WIDTH: '100%',
-    HEIGHT: '60PX',
+    HEIGHT: '60px',
 }
 
 export const DEFAULT_TITLE = {

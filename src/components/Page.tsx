@@ -16,13 +16,10 @@ export const Page: React.FC<PageProps> = (props) => {
     const _children = useMemo(() => (
             <View 
                 width='100%'
-                minHeight='100vh'
-                paddingTop='30px' 
-                paddingBottom='30px' 
+                minHeight='calc(100vh - 60px)'
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
-                height='100%'
                 {...props}
             >
                 {children}
